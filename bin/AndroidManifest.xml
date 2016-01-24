@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.db"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <!-- 此处版本号如果加上android:targetSdkVersion="17" 那么程序就无法正常的充当内容提供者：原因不明 -->
+    <uses-sdk
+        android:minSdkVersion="8"/>
+    
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <!-- 内容提供者主键配置：authorities（内容提供者的唯一标识，可以叫主机名） -->
+        <provider android:name="com.example.db.PersonProvider" android:authorities="cn.zhuwentao.provider" />
+        <activity
+            android:name="com.example.db.MainActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        
+        <!-- 配置单元测试 -->
+        <uses-library android:name="android.test.runner" />
+    </application>
+
+    <!-- targetPacckage中要指定需要测试的包名 -->
+    <instrumentation  android:name="android.test.InstrumentationTestRunner"
+        android:targetPackage="com.example.db" android:label="my test"/>"
+</manifest>
